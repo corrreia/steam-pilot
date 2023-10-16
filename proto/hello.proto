@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option go_package = "/proto";
+
+service Register {
+    rpc Ping (Hello) returns (Pong) {}
+    rpc Credentials (CredentialsInfo) returns (CredentialsResponse) {}
+    //   rpc SubscribeMessage (SubRequest) returns (stream SubMessage) {}
+}
+
+message Hello {
+    string hostname = 1;
+}
+
+message Pong {
+    enum Status {
+        OK = 0;
+        ERROR = 1;
+    }
+    Status status = 1;
+}
+
+message CredentialsInfo {
+    string username = 1;
+    string password = 2;
+    string sharedSecret = 3;
+}
+
+message CredentialsResponse {
+    enum Status {
+        OK = 0;
+        ERROR = 1;
+    }
+    Status status = 1;
+}
+
+// message SubRequest {
+// }
+
+// message SubMessage {
+//   enum Status {
+//     OK = 0;
+//     ERROR = 1;
+//   }
+//   Status status = 1;
+
+//   string message = 2;
+// }
